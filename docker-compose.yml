@@ -6,7 +6,7 @@ services:
       context: ./docker/app
       dockerfile: Dockerfile
     volumes:
-      - ./src/:/code
+      - ./src/:/app
     tty: true
 
   nginx:
