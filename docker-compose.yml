@@ -1,16 +1,24 @@
 version: '3'
 
 services:
-  web:
+  app:
     build:
       context: ./docker/app
       dockerfile: Dockerfile
-    container_name: web
-    ports:
-      - "8000:8000"
     volumes:
       - ./src/:/code
     tty: true
+
+  nginx:
+    build:
+      context: ./docker/nginx
+      dockerfile: Dockerfile
+    ports:
+      - 8000:80
+    depends_on:
+      - app
+    volumes:
+      - ./src/:/app
 
   db:
     build:
